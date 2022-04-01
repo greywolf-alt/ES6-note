@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generator</title>
+</head>
+
+<body>
+  <button id="add">添加点击事件</button>
+  <button id="remove">移出点击事件</button>
+  
+  <script type="module">
+    import { $, g_c } from '../js/index.js'
+    function* addEvent(select, event = new Function()) {
+      if (g_c(select) === String) {
+        select = $(select)
+      } else if (!isHtml(select)) {
+        return null
+      }
+      
+    }
+    const { 0: add } = $('#add')
+    console.dir(add instanceof Element)
+  </script>
+</body>
+
+</html>
