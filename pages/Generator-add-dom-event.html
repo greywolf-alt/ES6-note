@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generator</title>
+</head>
+
+<body>
+  <button id="add">添加点击事件</button>
+  <button id="remove">移出点击事件</button>
+  <button id="target">初始化</button>
+  <script>
+    const add = document.getElementById('add'), remove = document.getElementById('remove'), target = document.getElementById('target')
+    function* addEvent() {
+      target.innerText = '我有点击事件 你可以点击我了'
+      yield target.onclick = () => {
+        console.log('你点击我了')
+      }
+      target.onclick = null
+      target.innerText = '我没有点击事件了'
+    }
+    let event = addEvent()
+    add.onclick = () => {
+      event.next()
+      add.onclick = null
+    }
+    remove.onclick = () => {
+      event.next()
+      event = addEvent()
+      add.onclick = () => {
+        event.next()
+        add.onclick = null
+      }
+    }
+  </script>
+</body>
+
+</html>
